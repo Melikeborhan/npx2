@@ -1,38 +1,28 @@
-import Melike from './components/melike.jsx'
-import Deneme from './components/Deneme.jsx';
+//import { useEffect,useState } from 'react';
+import { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'; 
+//import Melike from './components/melike.jsx'
+//import Deneme from './components/Deneme.jsx';
+import Home from './pages/home.jsx'
+import Detail from './pages/detail.jsx';
 
 
 function App() {
-  const test = "props mantıgı";
+  return(
+  <>
+    <Router>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="detail/:id" element={<Detail />} />
+      </Routes>
+    </Suspense> 
+  </Router>
 
-  const arr = [
-    {name:'array1', id:0},
-    {name:'array2', id:1},
-    {name:'array3', id:2},
-
-  ]
-  
-console.log(arr,"arr");
-  const clickFunc = () => {
-    console.log("butona tıkladınn!!")
-  }
-  
-  return (
-    <div className="App">
-      {/* component mantıgı */}
-        <Melike degisken = {test}/>
-        <Deneme/>
-    {
-      arr.map((ar) => (
-        <div key={ar.id}>{ar.name}</div>
-      ))
-    }
-
-
-
-        <button  onClick={clickFunc}>tıkla</button>
-    </div>
-  );
+  </>
+  )
 }
-
 export default App;
+
+
+
